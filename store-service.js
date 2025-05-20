@@ -143,6 +143,16 @@ function getItemsByMinDate(minDateStr) {
   }).then(items => (items.length ? items : Promise.reject("no results returned")));
 }
 
+function getPublishedItemsByCategory(categoryId) {
+  return Item.findAll({
+    where: {
+      published: true,
+      category: categoryId // category should be the ID (e.g., 1, 2, etc.)
+    }
+  }).then(items => (items.length ? items : Promise.reject("no results returned")));
+}
+
+
 // Export module functions
 module.exports = {
   initialize,
@@ -155,5 +165,7 @@ module.exports = {
   getItemById,
   addCategory,
   deleteCategoryById,
-  deleteItemById
+  deleteItemById,
+  getPublishedItemsByCategory, // ✅ add this line
+
 };

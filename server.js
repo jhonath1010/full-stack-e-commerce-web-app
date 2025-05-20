@@ -96,8 +96,8 @@ app.get('/shop', async (req, res) => {
 app.get('/shop/:id', async (req, res) => {
   try {
     const item = await storeService.getItemById(req.params.id);
-    const items = await storeService.getPublishedItems();
     const categories = await storeService.getCategories();
+    const items = await storeService.getPublishedItemsByCategory(item.category); 
     res.render("shop", { data: { item, items, categories } });
   } catch {
     res.render("shop", { data: { message: "no results", categories: [] } });
